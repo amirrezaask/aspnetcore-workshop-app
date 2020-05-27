@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConferenceApp.Domain
 {
-    class Session
+    public class Session
     {
         public int ID { get; set; }
         public string Title { get; set; }
