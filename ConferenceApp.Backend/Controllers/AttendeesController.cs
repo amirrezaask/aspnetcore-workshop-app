@@ -24,14 +24,20 @@ namespace ConferenceApp.Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Attendee>>> GetAttendees()
         {
-            return await _context.Attendees.ToListAsync();
+            return await _context.Attendees
+                .AsNoTracking()
+                .Include(a => a.Sessions)
+                .ThenInclude(sa => sa.Session)
+                .ToListAsync();
         }
 
         // GET: api/Attendees/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Attendee>> GetAttendee(int id)
         {
-            var attendee = await _context.Attendees.FindAsync(id);
+            var attendee = await _context.Attendees
+                .AsNoTracking()
+                .Include(a => a.Sessions).ThenInclude(sa => sa.Session).SingleOrDefaultAsync(a => a.Id == id);
 
             if (attendee == null)
             {

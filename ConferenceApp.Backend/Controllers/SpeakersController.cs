@@ -42,7 +42,7 @@ namespace Backend
                 .AsNoTracking()
                 .Include(s => s.Sessions)
                 .ThenInclude(ss => ss.Session)
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync(s => s.ID == id);
 
             if (speaker == null)
                 return NotFound();

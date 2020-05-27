@@ -8,9 +8,8 @@ namespace ConferenceApp.Domain
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Abstract { get; set; }
+        public string Description { get; set; }
         public DateTimeOffset? StartTime { get; set; }
         public DateTimeOffset? EndTime { get; set; }
-        public int? TrackID { get; set; }
     }
 }
