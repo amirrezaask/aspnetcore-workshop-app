@@ -7,5 +7,6 @@ namespace ConferenceApp.Backend.Data
 {
     public class Attendee : Domain.Attendee
     {
+        public virtual IEnumerable<SessionAttendee> Sessions { get; set; }
     }
 }

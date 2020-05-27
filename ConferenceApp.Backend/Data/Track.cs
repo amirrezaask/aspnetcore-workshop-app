@@ -7,5 +7,6 @@ namespace ConferenceApp.Backend.Data
 {
     public class Track : Domain.Track
     {
+        public virtual IEnumerable<Session> Sessions { get; set; }
     }
 }
