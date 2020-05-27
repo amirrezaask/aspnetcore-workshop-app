@@ -24,11 +24,13 @@ namespace Backend
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Speaker>>> GetSpeakers()
         {
-            return await _context.Speakers
+            var speakers = await _context.Speakers
                 .AsNoTracking()
                 .Include(s=> s.Sessions)
                 .ThenInclude(ss => ss.Session)
                 .ToListAsync();
+            if (speakers == null) return NotFound();
+            return speakers;
         }
 
         // GET: api/Speakers/5
@@ -42,10 +44,7 @@ namespace Backend
                 .SingleOrDefaultAsync();
 
             if (speaker == null)
-            {
                 return NotFound();
-            }
-
             return speaker;
         }
 
