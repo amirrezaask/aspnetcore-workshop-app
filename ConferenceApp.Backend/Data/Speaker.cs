@@ -4,6 +4,6 @@ namespace ConferenceApp.Backend.Data
 {
     public class Speaker : Domain.Speaker
     {
-        public virtual IEnumerable<SessionSpeaker> Sessions { get; set; }
+        public virtual ICollection<SessionSpeaker> Sessions { get; set; }
     }
 }
