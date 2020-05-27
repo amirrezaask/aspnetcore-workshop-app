@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferenceApp.Backend.Models
+namespace ConferenceApp.Backend.Data
 {
-    public class Session : Domain.Session
+    public class Track : Domain.Track
     {
     }
 }
