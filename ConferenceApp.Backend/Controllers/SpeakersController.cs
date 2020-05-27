@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ConferenceApp.Backend.Data;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Backend
 {
@@ -47,7 +48,19 @@ namespace Backend
                 return NotFound();
             return speaker;
         }
-
+        // POST: api/Speakers
+        [HttpPost("")]
+        public async Task CreateSpeaker(ConferenceApp.Domain.Speaker speaker) 
+        {
+            await _context.Speakers.AddAsync(
+                new Speaker { 
+                    Name = speaker.Name,
+                    Bio = speaker.Bio,
+                    Website = speaker.Website,
+            });
+            await _context.SaveChangesAsync();
+            
+        }
         private bool SpeakerExists(int id)
         {
             return _context.Speakers.Any(e => e.ID == id);

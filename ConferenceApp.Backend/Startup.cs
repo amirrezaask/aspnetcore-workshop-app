@@ -1,22 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using ConferenceApp.Backend.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace Backend
+namespace ConferenecApp.Backend
 {
     public class Startup
     {
@@ -42,6 +35,7 @@ namespace Backend
                 }
             });
             services.AddSwaggerGen(options => {
+                options.CustomSchemaIds(m => m.FullName);
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Conference API", Version = "v1" });
             });
         }
