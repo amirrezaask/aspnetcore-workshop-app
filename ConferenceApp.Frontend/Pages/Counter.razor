@@ -1,16 +1,10 @@
 ﻿@page "/counter"
-
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@using ConferenceApp.Frontend.Services;
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
+    protected override async Task OnInitializedAsync() {
+        AttendeeService service = new AttendeeService(new HttpClient());
+        var attendees = await service.GetAttendees();
+        attendees.ToList().ForEach(a => Console.WriteLine(a));
     }
 }

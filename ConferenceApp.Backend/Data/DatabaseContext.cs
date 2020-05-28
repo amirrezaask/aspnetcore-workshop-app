@@ -9,12 +9,8 @@ namespace ConferenceApp.Backend.Data {
         }
         protected override void OnModelCreating (ModelBuilder modelBuilder) 
         {
-            modelBuilder.Entity<SessionAttendee>()
-                .HasKey(sa => new { sa.SessionId, sa.AttendeeId });
-            
-            modelBuilder.Entity<SessionSpeaker>()
-                .HasKey(sa => new { sa.SessionId, sa.SpeakerId });
-
+            modelBuilder.Entity<SessionAttendee>().HasKey(sa => new { sa.AttendeeId, sa.SessionId });
+            modelBuilder.Entity<SessionSpeaker>().HasKey(ss => new { ss.SpeakerId, ss.SessionId });
         }
         public DbSet<Speaker> Speakers {get; set; }
         public DbSet<Session> Sessions { get; set; }

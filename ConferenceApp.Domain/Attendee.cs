@@ -23,5 +23,10 @@ namespace ConferenceApp.Domain
 
         [StringLength(256)]
         public virtual string EmailAddress { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} {UserName} {EmailAddress}";
+        }
     }
 }

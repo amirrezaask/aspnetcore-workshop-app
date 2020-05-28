@@ -23,18 +23,28 @@ namespace ConferenecApp.Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(builder =>
+            {
+                builder.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+
+                });
+            });
             services.AddControllers();
-            services.AddDbContext<DatabaseContext>(options => {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) 
+            services.AddDbContext<DatabaseContext>(options =>
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("SqlServerLocal"));
                 }
-                else 
+                else
                 {
                     options.UseNpgsql(Configuration.GetConnectionString("PostgresSqlLocal"));
                 }
             });
-            services.AddSwaggerGen(options => {
+            services.AddSwaggerGen(options =>
+            {
                 options.CustomSchemaIds(m => m.FullName);
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Conference API", Version = "v1" });
             });
@@ -48,12 +58,12 @@ namespace ConferenecApp.Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors();
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Conference API V1"));
 
