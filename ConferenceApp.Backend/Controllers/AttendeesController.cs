@@ -55,7 +55,7 @@ namespace ConferenceApp.Backend.Controllers
         {
             _context.Attendees.Add(Attendee.FromDomain(attendee));
             await _context.SaveChangesAsync();
-
+            
             return CreatedAtAction("GetAttendee", new { id = attendee.Id }, attendee);
         }
 

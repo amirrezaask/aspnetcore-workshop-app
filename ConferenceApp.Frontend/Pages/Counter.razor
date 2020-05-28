@@ -2,9 +2,9 @@
 @using ConferenceApp.Frontend.Services;
 
 @code {
-    protected override async Task OnInitializedAsync() {
-        AttendeeService service = new AttendeeService(new HttpClient());
-        var attendees = await service.GetAttendees();
+    @* protected override async Task OnInitializedAsync() {
+        BaseService service = new BaseService(new HttpClient());
+        var attendees = await service.GetList<Domain.Attendee>(typeof(Domain.Attendee));
         attendees.ToList().ForEach(a => Console.WriteLine(a));
-    }
+    } *@
 }
