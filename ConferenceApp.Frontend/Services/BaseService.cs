@@ -36,5 +36,11 @@ namespace ConferenceApp.Frontend.Services
             }
             return JsonConvert.DeserializeObject<T>(await resp.Content.ReadAsStringAsync());
         }
+
+        public async Task Create<T>(Type t, T item)
+        {
+            var serialized = JsonConvert.SerializeObject(item);
+            await _client.PostAsync($"{BaseURL}{BaseAPIPrefix}{t.GetType().Name}", new StringContent(serialized));
+        }
     }
 }
