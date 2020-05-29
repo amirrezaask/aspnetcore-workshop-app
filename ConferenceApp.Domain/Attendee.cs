@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
+
+
+
+
+
+
 namespace ConferenceApp.Domain
 {
     public class Attendee
     {
+        // salam
         public int Id { get; set; }
 
         [Required]
