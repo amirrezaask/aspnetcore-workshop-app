@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceApp.Backend", "ConferenceApp.Backend\ConferenceApp.Backend.csproj", "{30264104-3ADD-47B4-9309-A9613A921095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceApp.Domain", "ConferenceApp.Domain\ConferenceApp.Domain.csproj", "{4FF26F36-68E3-4EB4-8B94-24110A0D97D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceApp.Domain", "ConferenceApp.Domain\ConferenceApp.Domain.csproj", "{4FF26F36-68E3-4EB4-8B94-24110A0D97D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceApp.Frontend", "ConferenceApp.Frontend\ConferenceApp.Frontend.csproj", "{92F1E09B-7D2E-49A8-BC8D-166C85416F4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceApp.Frontend", "ConferenceApp.Frontend\ConferenceApp.Frontend.csproj", "{92F1E09B-7D2E-49A8-BC8D-166C85416F4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E5793AF2-4163-4F28-8EE9-F4D7514FA353}"
 	ProjectSection(SolutionItems) = preProject

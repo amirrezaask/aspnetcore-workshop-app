@@ -1,7 +1,8 @@
-@page "/attendee"
+@page "/list"
 @using ConferenceApp.Frontend.Services;
 @inject HttpClient Http
-<h1>Attendees</h1>
+<h1>List</h1>
+<h2>Attendees</h2>
 @if (_attendees == null)
 {
     <h3>Loading Attendees... </h3>
@@ -31,10 +32,10 @@ else
         </tbody>
     </table>
 }
-<h1>Speakers</h1>
+<h2>Speakers</h2>
 @if (_speakers == null)
 {
-    <h3>Loading ... </h3>
+    <h3>Loading speakers ... </h3>
 }
 else
 {
@@ -59,9 +60,39 @@ else
         </tbody>
     </table>
 }
+<h3>Sessions</h3>
+@if (_sessions == null)
+{
+    <h3>Loading Sessions... </h3>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var session in _sessions)
+            {
+                <tr>
+                    <td>@session.Title</td>
+                    <td>@session.Description</td>
+                    <td>@session.StartTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 @code {
     public IEnumerable<Domain.Speaker> _speakers;
     public IEnumerable<Domain.Attendee> _attendees;
+    public IEnumerable<Domain.Session> _sessions;
+
     public async Task Create()
     {
 
@@ -71,5 +102,6 @@ else
         var service = new Service(Http);
         _attendees = await service.GetList<Domain.Attendee>(typeof(Domain.Attendee));
         _speakers = await service.GetList<Domain.Speaker>(typeof(Domain.Speaker));
+        _sessions = await service.GetList<Domain.Session>(typeof(Domain.Session));
     }
 }
