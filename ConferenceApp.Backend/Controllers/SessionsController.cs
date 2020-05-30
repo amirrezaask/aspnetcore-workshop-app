@@ -27,7 +27,9 @@ namespace ConferenceApp.Backend.Controllers
             return await _context.Sessions
                 .AsNoTracking()
                 .Include(s => s.Speakers)
+                    .ThenInclude(sp => sp.Speaker)
                 .Include(s => s.Attendees)
+                    .ThenInclude(att => att.Attendee)
                 .ToListAsync();
         }
 
@@ -38,7 +40,9 @@ namespace ConferenceApp.Backend.Controllers
             var session = await _context.Sessions
                 .AsNoTracking()
                 .Include(s => s.Attendees)
+                    .ThenInclude(att => att.Attendee)
                 .Include(s => s.Speakers)
+                    .ThenInclude(sp => sp.Speaker)
                 .SingleOrDefaultAsync(s => s.ID == id);
                 
             if (session == null)

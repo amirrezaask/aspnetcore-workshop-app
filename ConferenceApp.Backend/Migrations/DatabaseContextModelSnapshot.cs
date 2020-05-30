@@ -48,6 +48,16 @@ namespace Backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Attendees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EmailAddress = "raskarpour@gmail.com",
+                            FirstName = "Amirreza",
+                            LastName = "Askarpour",
+                            UserName = "amirrezaask"
+                        });
                 });
 
             modelBuilder.Entity("ConferenceApp.Backend.Data.Session", b =>
@@ -72,36 +82,57 @@ namespace Backend.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Sessions");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Title = "Keynote"
+                        });
                 });
 
             modelBuilder.Entity("ConferenceApp.Backend.Data.SessionAttendee", b =>
                 {
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("AttendeeId")
                         .HasColumnType("int");
 
-                    b.HasKey("SessionId", "AttendeeId");
+                    b.Property<int>("SessionId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AttendeeId");
+                    b.HasKey("AttendeeId", "SessionId");
+
+                    b.HasIndex("SessionId");
 
                     b.ToTable("SessionAttendee");
+
+                    b.HasData(
+                        new
+                        {
+                            AttendeeId = 1,
+                            SessionId = 1
+                        });
                 });
 
             modelBuilder.Entity("ConferenceApp.Backend.Data.SessionSpeaker", b =>
                 {
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SpeakerId")
                         .HasColumnType("int");
 
-                    b.HasKey("SessionId", "SpeakerId");
+                    b.Property<int>("SessionId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("SpeakerId");
+                    b.HasKey("SpeakerId", "SessionId");
+
+                    b.HasIndex("SessionId");
 
                     b.ToTable("SessionSpeaker");
+
+                    b.HasData(
+                        new
+                        {
+                            SpeakerId = 1,
+                            SessionId = 1
+                        });
                 });
 
             modelBuilder.Entity("ConferenceApp.Backend.Data.Speaker", b =>
@@ -127,6 +158,15 @@ namespace Backend.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Speakers");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Bio = "Awesome Scott",
+                            Name = "Scott hanselman",
+                            Website = "hanselman.com"
+                        });
                 });
 
             modelBuilder.Entity("ConferenceApp.Backend.Data.SessionAttendee", b =>

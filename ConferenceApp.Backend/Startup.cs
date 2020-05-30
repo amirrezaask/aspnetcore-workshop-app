@@ -31,7 +31,7 @@ namespace ConferenecApp.Backend
 
                 });
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddDbContext<DatabaseContext>(options =>
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

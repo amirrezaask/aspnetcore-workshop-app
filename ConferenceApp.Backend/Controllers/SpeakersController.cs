@@ -28,7 +28,7 @@ namespace Backend
             var speakers = await _context.Speakers
                 .AsNoTracking()
                 .Include(s=> s.Sessions)
-                .ThenInclude(ss => ss.Session)
+                    .ThenInclude(sp => sp.Session)
                 .ToListAsync();
             if (speakers == null) return NotFound();
             return speakers;
@@ -41,7 +41,7 @@ namespace Backend
             var speaker = await _context.Speakers
                 .AsNoTracking()
                 .Include(s => s.Sessions)
-                .ThenInclude(ss => ss.Session)
+                    .ThenInclude(ss => ss.Session)
                 .SingleOrDefaultAsync(s => s.ID == id);
 
             if (speaker == null)

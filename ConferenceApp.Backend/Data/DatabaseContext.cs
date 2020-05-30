@@ -30,7 +30,19 @@ namespace ConferenceApp.Backend.Data {
                 SpeakerId = 1,
                 SessionId = 1,
             });
-
+            modelBuilder.Entity<Attendee>().HasData(new Attendee 
+            {
+                Id = 1,
+                FirstName = "Amirreza",
+                LastName = "Askarpour",
+                EmailAddress = "raskarpour@gmail.com",
+                UserName = "amirrezaask"
+            });
+            modelBuilder.Entity<SessionAttendee>().HasData(new SessionAttendee
+            {
+                AttendeeId = 1,
+                SessionId = 1,
+            });
         }
         public DbSet<Speaker> Speakers {get; set; }
         public DbSet<Session> Sessions { get; set; }
