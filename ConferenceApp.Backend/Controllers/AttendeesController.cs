@@ -22,28 +22,32 @@ namespace ConferenceApp.Backend.Controllers
 
         // GET: api/Attendees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Attendee>>> GetAttendees()
+        public async Task<ActionResult<IEnumerable<object>>> GetAttendees()
         {
             return await _context.Attendees
                 .AsNoTracking()
                 .Include(a => a.Sessions)
-                .ThenInclude(sa => sa.Session)
+                    .ThenInclude(sa => sa.Session)
+                .Select(a => a.AttendeeResponse())
                 .ToListAsync();
         }
 
         // GET: api/Attendees/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Attendee>> GetAttendee(int id)
+        public async Task<ActionResult<object>> GetAttendee(int id)
         {
             var attendee = await _context.Attendees
                 .AsNoTracking()
-                .Include(a => a.Sessions).ThenInclude(sa => sa.Session).SingleOrDefaultAsync(a => a.Id == id);
+                .Include(a => a.Sessions)
+                    .ThenInclude(sa => sa.Session)
+                .Select(a => a.AttendeeResponse())
+                .SingleOrDefaultAsync(a => a.Id == id);
 
             if (attendee == null)
             {
                 return NotFound();
             }
-
+            
             return attendee;
         }
 
